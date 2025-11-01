@@ -17,7 +17,7 @@ export class HealthService {
     healthData['auth-service'] = authHealth.data;
 
     const userOrgHealth = await this.userOrgService.checkHealth();
-    healthData['user-Organization-service'] = userOrgHealth.data;
+    healthData['administrator-service'] = userOrgHealth.data;
 
     const auditHealth = await this.auditService.checkHealth();
     healthData['audit-service'] = auditHealth.data;

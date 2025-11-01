@@ -18,17 +18,37 @@ export default tseslint.config(
         ...globals.jest,
       },
       sourceType: 'commonjs',
+
+      // parserOptions: {
+      //   projectService: true,
+      //   tsconfigRootDir: import.meta.dirname,
+      // },
+    },
+  },
+
+  // Per-service config blocks
+  {
+    files: ['apps/**/**/*.ts', 'libs/**/**/*.ts'],
+    languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: true, // enables type-aware linting
         tsconfigRootDir: import.meta.dirname,
+        project: [
+          './tsconfig.json', // root
+          './apps/*/tsconfig.app.json', // Nest services
+          './libs/*/tsconfig.lib.json', // shared libs (if any)
+        ],
       },
     },
   },
+
+  // Custom rules
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
     },
   },
 );

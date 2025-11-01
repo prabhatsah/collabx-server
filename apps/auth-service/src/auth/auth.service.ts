@@ -83,7 +83,7 @@ export class AuthService implements OnModuleInit {
 
   async login(
     request: LoginRequest,
-    meta: { ip?: string; userAgent?: string },
+    meta?: { ip?: string; userAgent?: string },
   ) {
     const { email, password } = request;
     console.log('Password:--------------', password);
@@ -104,19 +104,16 @@ export class AuthService implements OnModuleInit {
     );
 
     //emiting event
-    const userInfo = await this.getUserByAuthUserId({
-      authUserId: authUser.id,
-    });
-    await this.authEvents.loginSuccess({
-      userId: userInfo.user?.userId,
-      orgId: userInfo.user?.defaultOrgId,
-      // email: authUser.email,
-      // fullName: userInfo.user?.fullName,
-      // organizations: userInfo.user?.memberships,
-      message: 'Login success',
-      success: true,
-      ...meta,
-    });
+    // const userInfo = await this.getUserByAuthUserId({
+    //   authUserId: authUser.id,
+    // });
+    // await this.authEvents.loginSuccess({
+    //   userId: userInfo.user?.userId,
+    //   orgId: userInfo.user?.defaultOrgId,
+    //   message: 'Login success',
+    //   success: true,
+    //   ...meta,
+    // });
 
     return tokens;
   }

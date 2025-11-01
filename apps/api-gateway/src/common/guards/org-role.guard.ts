@@ -36,9 +36,12 @@ export class OrgRoleGuard implements CanActivate {
       }
     }
 
-    const userRole = user.currentOrg.role?.toUpperCase();
+    const userRole = user.currentOrg?.role?.toUpperCase();
     const required = requiredRoles.map((r) => r.toUpperCase());
-    console.log('userRole: ', userRole, ', required: ', required);
+
+    if (!userRole) {
+      throw new ForbiddenException('Access denied: No role found');
+    }
 
     if (!required.includes(userRole)) {
       throw new ForbiddenException(

@@ -7,19 +7,17 @@ import {
   Post,
 } from '@nestjs/common';
 import { SignupService } from './signup.service';
-import { CompleteSignupDto } from './dto/sign.dto';
+import { SignupDto } from './dto/sign.dto';
 
-@Controller('signup')
+@Controller('/api/v1')
 export class SignupController {
   private readonly logger = new Logger(SignupController.name);
 
   constructor(private readonly signupService: SignupService) {}
 
-  @Post()
+  @Post('/signup')
   @HttpCode(HttpStatus.CREATED)
-  signup(@Body() dto: CompleteSignupDto) {
-    console.log('------------------------ Signup  called -----------------');
-
+  signup(@Body() dto: SignupDto) {
     return this.signupService.signup(dto);
   }
 }

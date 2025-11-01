@@ -1,7 +1,6 @@
 import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common';
 import { UserOrgService } from '../user-org/user-org.service';
 import { AuthService } from '../auth/auth.service';
-import { VerifyTokenRequest } from '@app/common';
 import { ApiResponseDto } from '@app/common/dto/response.dto';
 import Redis from 'ioredis';
 import { GetSessionResponse } from '@app/common/proto/user-org';
@@ -64,7 +63,7 @@ export class SessionService {
   async updateCurrentOrg(
     userId: string,
     orgId: string,
-    updateDefaultOrg: boolean,
+    updateDefaultOrg?: boolean,
   ) {
     const redisKey = this.getRedisKey(userId);
 

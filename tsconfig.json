@@ -23,12 +23,9 @@
     "noFallthroughCasesInSwitch": false,
     "strict": false,
     "paths": {
-      "@app/common": [
-        "libs/common/src"
-      ],
-      "@app/common/*": [
-        "libs/common/src/*"
-      ]
+      "@app/common": ["libs/common/src"],
+      "@app/common/*": ["libs/common/src/*"]
     }
   }
+  // "include": ["src/**/*"]
 }

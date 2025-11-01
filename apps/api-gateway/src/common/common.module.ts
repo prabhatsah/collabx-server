@@ -12,7 +12,7 @@ export class CommonModule {
       .apply(SessionMiddleware)
       .exclude(
         { path: 'auth/(.*)', method: RequestMethod.ALL },
-        { path: 'signup', method: RequestMethod.POST },
+        { path: 'api/v1/signup', method: RequestMethod.POST },
         { path: 'healthCheck', method: RequestMethod.GET },
         { path: 'accept-invitation', method: RequestMethod.POST },
       )

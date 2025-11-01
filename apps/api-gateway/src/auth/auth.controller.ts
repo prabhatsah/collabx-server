@@ -9,23 +9,17 @@ import {
   Res,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import type { CreateAuthUserRequest, LoginRequest } from '@app/common';
+import type { LoginRequest } from '@app/common';
 import type { Response } from 'express';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
-@Controller('auth')
+@Controller('/api/v1/auth')
 export class AuthController {
   private readonly logger = new Logger(AuthController.name);
 
   constructor(private readonly authService: AuthService) {}
 
-  // @Post('signup')
-  // @HttpCode(HttpStatus.CREATED)
-  // createAuthUser(@Body() request: CreateAuthUserRequest) {
-  //   return this.authService.createAuthUser(request);
-  // }
-
-  @Post('login')
+  @Post('/login')
   @HttpCode(HttpStatus.ACCEPTED)
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })

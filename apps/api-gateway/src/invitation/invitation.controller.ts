@@ -3,7 +3,6 @@ import {
   Controller,
   HttpCode,
   HttpStatus,
-  Param,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -12,30 +11,30 @@ import { Roles } from '../common/decorators/roles.decorator';
 import { OrgRoleGuard } from '../common/guards/org-role.guard';
 import {
   AcceptInvitationRequestDto,
-  InviteUserDto,
   InviteUserRequestDto,
+  InviteUserServiceDto,
 } from './dto/invitation.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { type SessionUser } from '@app/common/interfaces';
 import { ApiResponseDto } from '@app/common/dto/response.dto';
 
-@Controller()
+@Controller('/api/v1')
 export class InvitationController {
   constructor(private readonly invitationService: InvitationService) {}
 
-  @Post('invitation')
+  @Post('/invitation')
   @HttpCode(HttpStatus.OK)
-  // @Roles('ADMIN')
-  // @UseGuards(OrgRoleGuard)
+  @Roles('ADMIN')
+  @UseGuards(OrgRoleGuard)
   async inviteUser(
     @Body() dto: InviteUserRequestDto,
     @CurrentUser() user: SessionUser,
   ) {
-    const req = {
+    const req: InviteUserServiceDto = {
       ...dto,
       invitedById: user.userInfo.id,
-      organizationId: user.currentOrg?.id,
-      organizationName: user.currentOrg?.name,
+      organizationId: user.currentOrg?.id || '',
+      organizationName: user.currentOrg?.name || '',
     };
 
     const res = await this.invitationService.inviteUser(req);
@@ -45,10 +44,6 @@ export class InvitationController {
   @Post('accept-invitation')
   @HttpCode(HttpStatus.OK)
   async acceptInvitation(@Body() dto: AcceptInvitationRequestDto) {
-    const req = {
-      ...dto,
-      organizationName: user.currentOrg?.name,
-    };
     const res = await this.invitationService.acceptInvitation(dto);
     return ApiResponseDto.success(res, 'Invitation accepted');
   }

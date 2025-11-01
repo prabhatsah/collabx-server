@@ -3,9 +3,7 @@ import { AuthService } from './auth.service';
 import {
   AuthServiceController,
   AuthServiceControllerMethods,
-  ChangePasswordRequest,
   CreateAuthUserRequest,
-  HealthCheckRequest,
   HealthCheckResponse,
   LoginRequest,
   VerifyTokenRequest,
@@ -26,7 +24,7 @@ export class AuthController implements AuthServiceController {
     return this.authService.login(request);
   }
 
-  changePassword(changePasswordRequest: ChangePasswordRequest) {
+  changePassword() {
     return {
       success: true,
     };
@@ -36,7 +34,7 @@ export class AuthController implements AuthServiceController {
     return this.authService.verifyToken(request);
   }
 
-  checkHealth(request: HealthCheckRequest): HealthCheckResponse {
+  checkHealth(): HealthCheckResponse {
     return this.authService.checkHealth();
   }
 }

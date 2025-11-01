@@ -20,7 +20,7 @@ export class InviteUserServiceDto {
   @ApiProperty({ example: 'Organization Id', description: 'Organization Id' })
   @IsString()
   @IsNotEmpty()
-  orgId: string;
+  organizationId: string;
 
   @ApiProperty({
     example: 'Invited by user Id',
@@ -28,7 +28,7 @@ export class InviteUserServiceDto {
   })
   @IsString()
   @IsNotEmpty()
-  invitedByUserId: string;
+  invitedById: string;
 
   @ApiProperty({
     example: 'Invitee Email',
@@ -42,6 +42,11 @@ export class InviteUserServiceDto {
   @IsString()
   @IsNotEmpty()
   role: string;
+
+  @ApiProperty({ example: 'Acme Inc.', description: 'Organization Name' })
+  @IsString()
+  @IsNotEmpty()
+  organizationName: string;
 }
 
 export class AcceptInvitationRequestDto {

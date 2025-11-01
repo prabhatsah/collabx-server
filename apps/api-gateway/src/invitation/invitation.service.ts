@@ -7,7 +7,7 @@ import { type ClientGrpc } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 import {
   AcceptInvitationRequestDto,
-  InviteUserDto,
+  InviteUserServiceDto,
 } from './dto/invitation.dto';
 import { AuthService } from '../auth/auth.service';
 
@@ -27,7 +27,7 @@ export class InvitationService implements OnModuleInit {
     );
   }
 
-  async inviteUser(req: InviteUserDto) {
+  async inviteUser(req: InviteUserServiceDto) {
     const res = await lastValueFrom(
       this.userOrganizationClient.inviteUser(req),
     );

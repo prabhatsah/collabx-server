@@ -77,13 +77,13 @@
         "watchAssets": true
       }
     },
-    "user-organization-service": {
+    "administrator-service": {
       "type": "application",
-      "root": "apps/user-organization-service",
+      "root": "apps/administrator-service",
       "entryFile": "src/main",
       "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/user-organization-service/tsconfig.app.json",
+        "tsConfigPath": "apps/administrator-service/tsconfig.app.json",
         "assets": ["proto/*.proto"],
         "watchAssets": true
       }
